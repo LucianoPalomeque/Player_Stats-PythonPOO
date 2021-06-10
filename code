@@ -1,0 +1,40 @@
+class Player():
+    def __init__(self, complete_name, nationality, age, height, weight):
+        self.complete_name = complete_name
+        self.nationality = nationality
+        self.age = age
+        self.height = height
+        self.weight = weight
+    
+    @property
+    def data(self):
+        return 'Name: {}\nNationality: {}\nAge: {}\nHeight(cm): {}\nWeight(kg): {}'.format(self.complete_name, self.nationality, self.age, self.height, self.weight)
+
+class Football():
+    def __init__(self, position, club, club_country):
+        self.position = position
+        self.club = club
+        self.club_country = club_country
+    
+    @property
+    def football_data(self):
+        return 'Position: {}\nClub: {}\nClub Country: {}'.format(self.position, self.club, self.club_country)
+
+class Player_Match(Player, Football):
+    def __init__(self, complete_name, nationality, age, height, weight, position, club, club_country):
+        Player.__init__(self, complete_name, nationality, age, height, weight)
+        Football.__init__(self, position, club, club_country)
+    
+    @staticmethod
+    def rival(rival_club, rival_country, competition):
+        return 'The {} game was against {}({})'.format(competition, rival_club, rival_country)
+    
+    @staticmethod
+    def ingame_stats(mins_played, goals, assists, distance_traveled):
+        return 'Minutes played: {}\nGoals: {}\nAssists: {}\nDistance traveled(km): {}'.format(mins_played, goals, assists, distance_traveled)
+
+match1 = Player_Match('Cristiano Ronaldo', 'Portugal', 36, 187, 83, 'DC', 'Juventus', 'Italy')
+print(match1.rival('Barcelona', 'Spain', 'UCL'))
+print(match1.data)
+print(match1.football_data)
+print(match1.ingame_stats(92, 2, 1, 13.5))
